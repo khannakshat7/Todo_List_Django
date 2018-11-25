@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+	<TITLE>
+		Akshat Todo List
+	</TITLE>
+</HEAD>
+<BODY bgcolor=#FF4E50 >
+<TABLE align="center" bgcolor=#F9D423 width=20% cellpadding=4%>
+<tr><td>
+<IMG src="https://wiki.itap.purdue.edu/download/attachments/10397924/toodledo-icon.png?version=1&modificationDate=1257578847000&api=v2">
+<P style="Comic Sans MS"><center><B><H1>Todo List</H1></B></center></P>
+<UL type="square">
+	{% for todo_item in all_items %}
+	  <li>{{ todo_item.content }}
+	  <form action="/deleteTodo/{{todo_item.id}}/"
+	      style="display: inline;"
+	      method="post">{% csrf_token %}
+	    <input bgcolor=#acd6ef type="submit" value="Delete"/>
+      </form>
+	  </li>
+	{% endfor %}
+</UL>
+<form action="/addTodo/" method="post">{% csrf_token %}
+	<input type="text" name="content"/>
+	<input type="submit" name="Add"/>
+</form>
+</td>
+</tr>
+</TABLE>
+<STYLE>
+TABLE {
+	margin-top: 5%;
+    border-radius: 25px;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+</STYLE>
+</BODY>
+</HTML>
